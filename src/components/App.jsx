@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 
 import { Notify } from 'notiflix';
 
-
 import { Searchbar } from './searchbar/searchbar';
 import { ImageGallery } from './imageGallery/imageGallery';
 import { Button } from './buttonLoadMore/buttonLoadMore';
@@ -67,20 +66,15 @@ export const App = () => {
     fetchGallery(query, page);
   }, [page, query]);
 
- 
-
-    return (
-      <div >
-        <Searchbar onSubmit={onSubmit} />
-        <ImageGallery images={images} onClickImage={onClickImage} />
-        {isLoading && <Loader />}
-        {showBtn && !isLoading && <Button onClick={onNextPage} />}
-        {showModal && (
-          <Modal
-            largeImageURL={largeImageURL}
-            onModalClose={onModalClose}
-          />
-        )}
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Searchbar onSubmit={onSubmit} />
+      <ImageGallery images={images} onClickImage={onClickImage} />
+      {isLoading && <Loader />}
+      {showBtn && !isLoading && <Button onClick={onNextPage} />}
+      {showModal && (
+        <Modal largeImageURL={largeImageURL} onModalClose={onModalClose} />
+      )}
+    </div>
+  );
+};
