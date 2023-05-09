@@ -21,7 +21,6 @@ export const App = () => {
   const onSubmit = e => {
     e.preventDefault();
     setQuery(e.target.search.value);
-    setIsLoading(true);
     setImages([]);
     setPage(1);
   };
