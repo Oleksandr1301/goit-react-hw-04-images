@@ -18,11 +18,13 @@ export const App = () => {
   const [showModal, setShowModal] = useState(false);
   const [largeImageURL, setLargeImageURL] = useState('');
 
-  const onSubmit = e => {
-    e.preventDefault();
-    setQuery(e.target.search.value);
-    setImages([]);
-    setPage(1);
+  const onSubmit = newQuery => {
+    if (newQuery !== query) {
+      setQuery(newQuery);
+      setIsLoading(true);
+      setImages([]);
+      setPage(1);
+    }
   };
 
   const onNextPage = () => {
@@ -47,6 +49,7 @@ export const App = () => {
       try {
         const response = await fetchHitsByQuery(searchQuery, page);
         setImages(prevState => [...prevState, ...response]);
+
         if (response.length < 12) {
           setShowBtn(false);
         }
